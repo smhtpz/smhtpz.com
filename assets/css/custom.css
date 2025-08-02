@@ -1,0 +1,85 @@
+/* Ana sayfadaki profil resminin dairesel olmasını engeller ve kenar boşluğunu ayarlar */
+.profile img {
+    border-radius: 0 !important;
+    margin-bottom: 20px;
+}
+
+/* Site yüksekliği ve footer pozisyon sorunlarını çöz */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    min-height: calc(100vh - 60px); /* Footer yüksekliğini hesaba kat */
+    padding-bottom: 20px;
+}
+
+/* Sosyal medya ikonlarının footer'da düzgün görünmesini sağla */
+.footer {
+    margin-top: auto;
+    padding: 20px 0;
+    position: relative;
+    z-index: 10;
+}
+
+/* Profile mode'da sayfa yüksekliği sorunu */
+.profile-mode .main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ana sayfa content'i ortalama */
+.profile-mode {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-mode .main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Footer'ın altında kalmaması için */
+.footer {
+    margin-top: auto;
+    padding: 20px 0;
+}
+
+/* Dark theme için logo görünürlüğü */
+[data-theme="dark"] .logo img {
+    filter: brightness(0) invert(1);
+}
+
+/* Light theme için logo */
+[data-theme="light"] .logo img {
+    filter: none;
+}
+
+/* Scroll problemini çöz */
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Content yüksekliğini ayarla */
+#content {
+    min-height: calc(100vh - 120px);
+}
+
+/* Sosyal ikonların powered by hugo'nun altında kalmaması için */
+.social-icons {
+    margin-bottom: 10px;
+}
+
+.footer .powered-by {
+    margin-top: 10px;
+    opacity: 0.7;
+}

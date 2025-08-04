@@ -28,7 +28,7 @@ theme = "PaperMod"
     [params.logo]
         light = "images/logo-light.png"
         dark = "images/logo-dark.png"
-        alt = "Semih Topuz - Akademik Web Sitesi"
+        alt = "smhtpz logo"
 
     [params.profileMode]
         enabled = true

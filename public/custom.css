@@ -1,0 +1,21 @@
+/* Logo linki ve resim ayarları */
+.logo-link img {
+    height: 35px; /* Logonun yüksekliği, istediğiniz gibi ayarlayabilirsiniz */
+    width: auto;
+    display: inline-block;
+    vertical-align: middle; 
+}
+
+/* Sayfa ilk açıldığında karanlık logoyu gizle */
+.logo-dark {
+    display: none;
+}
+
+/* Karanlık tema aktif olduğunda */
+body.dark .logo-light {
+    display: none; /* Aydınlık logoyu gizle */
+}
+
+body.dark .logo-dark {
+    display: inline-block; /* Karanlık logoyu göster */
+}

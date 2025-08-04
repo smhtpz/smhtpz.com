@@ -1,0 +1,36 @@
+/* assets/css/extended/custom.css */
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.logo img.logo-dark {
+    display: none;
+}
+.logo img.logo-light {
+    display: inline-block;
+}
+
+body.dark .logo img.logo-dark {
+    display: inline-block;
+}
+body.dark .logo img.logo-light {
+    display: none;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+}
+.logo img {
+    height: 35px;
+    width: auto;
+}

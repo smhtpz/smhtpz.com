@@ -1,43 +1,39 @@
 baseURL = "https://www.smhtpz.com/"
 languageCode = "en-us"
-title = "Semih Topuz" # Bu, tarayıcı sekmesinde görünür ama logo bunu ezer
+title = "Semih Topuz"
 theme = "PaperMod"
 
-# ANA MENÜ
-[[menu.main]]
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+
+
+[menu]
+  [[menu.main]]
     identifier = "about"
     name = "About"
     url = "/about/"
     weight = 10
-
-[[menu.main]]
+  [[menu.main]]
     identifier = "publications"
     name = "Publications"
     url = "/publications/"
     weight = 20
 
-# GENEL PARAMETRELER
 [params]
     defaultTheme = "dark" 
     ShowShareButtons = false
-    # Özel CSS dosyamızı buraya tanıtıyoruz
-    customCSS = ["css/custom.css"]
-
-    # LOGOYU BAŞLIĞA EKLEME (Doğru Yöntem)
+    
     [params.logo]
-        logoText = "" # Logo resmi kullanacağımız için metni boş bırakıyoruz
-        logo = "/images/logo-light.png" # Açık tema için logo
-        logoDark = "/images/logo-dark.png" # Koyu tema için logo
+        light = "images/logo-light.png"
+        dark = "images/logo-dark.png"
+        alt = "Semih Topuz - Akademik Web Sitesi"
 
-    # ANA SAYFA PROFİL MODU (Temanın Kendi Özelliği)
     [params.profileMode]
         enabled = true
         title = "Semih Topuz"
         subtitle = "PhD Candidate in Educational Measurement and Evaluation | Researcher focusing on AI, Psychometrics, and Data-Driven Assessment"
-        imageUrl = "/images/smhtpz-logo-dark.png" # Geniş logonuzu buraya koyuyoruz
-        imageTitle = "smhtpz logo"
-        imageWidth = 280  # Logonuzun genişliği (piksel)
-        imageHeight = 70 # Logonuzun yüksekliği (piksel)
         
         [[params.profileMode.buttons]]
             name = "Publications"
@@ -47,15 +43,12 @@ theme = "PaperMod"
             name = "About"
             url = "/about"
 
-# SOSYAL İKONLAR (Footer'da görünecek)
 [[params.socialIcons]]
     name = "github"
     url = "https://github.com/smhtpz"
-
 [[params.socialIcons]]
     name = "googlescholar"
     url = "https://scholar.google.com/citations?user=MjAhoTkAAAAJ&hl"
-
 [[params.socialIcons]]
     name = "linkedin"
     url = "https://linkedin.com/in/smhtpz"

@@ -63,7 +63,7 @@
       month: September
       links:
         - label: Conference
-          url: https://kongre.epodder.org/
+          url: https://kongre.epodder.org/2024/en/
 
     - authors: S. Topuz, G. Berberoğlu, E. Kınay Çiçek, and K. B. Demirus
       title: Can computer adaptive version of students' ratings of instruction provide valid results?
@@ -81,7 +81,7 @@
       month: September
       links:
         - label: Conference
-          url: https://kongre.epodder.org/
+          url: https://kongre.epodder.org/2024/en/
 
     - authors: S. Topuz, G. Berberoğlu, E. Kınay Çiçek, and K. B. Demirus
       title: Can the course and instructor evaluation form be applied as an computer adaptive test?
@@ -97,9 +97,6 @@
       venue: "AMEEP, İzmir, Türkiye"
       year: 2022
       month: September
-      links:
-        - label: PDF
-          url: https://epodder.org/wp-content/uploads/2023/01/cmeep-2022.pdf
 
 - section: Theses
   type: thesis
@@ -118,4 +115,4 @@
       thesis: master
       links:
         - label: Repository
-          url: http://www.openaccess.hacettepe.edu.tr:8080/xmlui/handle/11655/25275
+          url: https://openaccess.hacettepe.edu.tr/xmlui/handle/11655/25275

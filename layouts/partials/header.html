@@ -15,7 +15,7 @@
         <div class="logo">
             <a href="{{ site.Home.RelPermalink | absLangURL }}" accesskey="h" title="{{ site.Params.logo.alt | default site.Title }} (Alt + H)">
                 {{- with site.Params.logo -}}
-                    <h1 class="logo-title visually-hidden">{{ site.Title }}</h1>
+                    <span class="logo-title visually-hidden">{{ site.Title }}</span>
                     {{- $lightLogoPath := .light }}
                     {{- $darkLogoPath := .dark }}
                     {{- $altText := .alt | default site.Title }}

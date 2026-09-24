@@ -1,14 +1,29 @@
 # Publications shown on /publications/ (rendered by layouts/shortcodes/publications.html).
-# Add new entries at the top of their section. Fields:
-#   authors  - author list; the site owner's name (params.pubAuthorName) is highlighted
-#   title    - title of the work
-#   venue    - journal, conference or institution (shown in italics)
-#   details  - optional extra info (volume, pages, date...)
-#   year     - shown in the left column; leave empty when not yet published
+# Add new entries at the top of their section.
+#
+# Section fields:
+#   section  - heading shown on the page
+#   type     - citation type for every item: article | conference | thesis
+#
+# Item fields:
+#   authors  - "A. Surname, B. C. Surname, and D. Surname"; the site owner's name
+#              (params.pubAuthorName) is highlighted
+#   title    - title of the work (sentence case)
+#   venue    - journal name, conference ("Name, City, Country") or institution
+#   year     - year; leave empty when not yet published
+#   yearLabel - optional text for the year column instead of `year` (e.g. 2024–)
+#   month    - full month name, e.g. September
+#   format   - conferences: Paper presentation (default), Poster presentation, Symposium...
+#   volume, issue, pages - journal articles
+#   thesis   - phd | master (theses only)
 #   status   - optional badge such as "Under review" or "In progress"
 #   links    - optional list of {label, url}; typical labels: DOI, PDF, Conference, Repository
+#   abstract - optional; adds an "Abstract" button that expands the text
+#
+# The "Cite" button (APA 7 and BibTeX) is generated from these fields.
 
 - section: Journal Articles
+  type: article
   items:
     - authors: G. Berberoğlu, S. Topuz, E. Kınay Çiçek, and K. B. Demirus
       title: How do students' ratings of instruction change from the online pandemic period to face-to-face education? A case study in Turkey
@@ -18,19 +33,23 @@
     - authors: F. Çok, C. H. Güçlü, H. K. Özdoğan, and S. Topuz
       title: "Adaptation of helicopter parenting and autonomy supportive behaviors to Turkish: Validity and reliability study"
       venue: Ankara University Journal of Faculty of Educational Sciences (JFES)
-      details: vol. 55, no. 2, pp. 339–360, Aug. 2022, ISSN 1301-3718
       year: 2022
+      month: August
+      volume: 55
+      issue: 2
+      pages: 339–360
       links:
         - label: DOI
           url: https://doi.org/10.30964/auebfd.886761
 
 - section: Conference Proceedings
+  type: conference
   items:
     - authors: S. Topuz
       title: Semantic–empirical mismatches in social and emotional skills
       venue: "ITC 2026, Auckland, New Zealand"
-      details: Jul. 2026
       year: 2026
+      month: July
       links:
         - label: Conference
           url: https://conference.intestcom.org/
@@ -38,8 +57,8 @@
     - authors: E. Kınay Çiçek, S. Topuz, G. Berberoğlu, and K. B. Demirus
       title: Investigation of measurement invariance and differential item function by course and instructor characteristics in student evaluations of instruction in higher education
       venue: "AMEEP, Eskişehir, Türkiye"
-      details: Sep. 2024
       year: 2024
+      month: September
       links:
         - label: Conference
           url: https://kongre.epodder.org/
@@ -47,8 +66,8 @@
     - authors: S. Topuz, G. Berberoğlu, E. Kınay Çiçek, and K. B. Demirus
       title: Can computer adaptive version of students' ratings of instruction provide valid results?
       venue: "IACAT, Seoul, South Korea"
-      details: Sep. 2024
       year: 2024
+      month: September
       links:
         - label: Conference
           url: https://iacat2024.com/home
@@ -56,8 +75,8 @@
     - authors: S. Topuz, S. Gökçe, and G. Berberoğlu
       title: Comparison of the PISA reading skills test across language and country groups
       venue: "AMEEP, Eskişehir, Türkiye"
-      details: Sep. 2024
       year: 2024
+      month: September
       links:
         - label: Conference
           url: https://kongre.epodder.org/
@@ -65,8 +84,8 @@
     - authors: S. Topuz, G. Berberoğlu, E. Kınay Çiçek, and K. B. Demirus
       title: Can the course and instructor evaluation form be applied as an computer adaptive test?
       venue: "İstanbul, Türkiye"
-      details: Sep. 2023
       year: 2023
+      month: September
       links:
         - label: PDF
           url: https://sempozyum.adaptivetest.net/wp-content/uploads/2023/08/butas-2023-ozet.pdf
@@ -74,24 +93,27 @@
     - authors: S. Topuz
       title: Investigation of measurement invariance of Survey on Social and Emotional Skills by language family
       venue: "AMEEP, İzmir, Türkiye"
-      details: Sep. 2022
       year: 2022
+      month: September
       links:
         - label: PDF
           url: https://epodder.org/wp-content/uploads/2023/01/cmeep-2022.pdf
 
 - section: Theses
+  type: thesis
   items:
     - authors: S. Topuz
       title: Investigating of validity evidence with artificial intelligence
-      venue: "Ph.D. dissertation, Hacettepe University, Ankara"
-      year: 2024–
+      venue: Hacettepe University
+      thesis: phd
+      yearLabel: 2024–
       status: In progress
 
     - authors: S. Topuz
       title: Comparison of analysis results obtained from WEKA and Orange data mining software in educational data mining
-      venue: "Master's thesis, Hacettepe University, Ankara"
+      venue: Hacettepe University
       year: 2021
+      thesis: master
       links:
         - label: Repository
           url: http://www.openaccess.hacettepe.edu.tr:8080/xmlui/handle/11655/25275

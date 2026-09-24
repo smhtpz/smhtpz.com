@@ -1,26 +1,145 @@
-{{- /* Renders data/publications.yaml. The site owner's name is highlighted in author lists. */ -}}
+{{- /*
+  Renders data/publications.yaml: one card per item with link pills, an optional
+  abstract, and a "Cite" panel (APA 7 + BibTeX) generated from the item's fields.
+*/ -}}
 {{- $me := site.Params.pubAuthorName | default "S. Topuz" }}
+{{- $ascii := dict "ı" "i" "İ" "i" "ğ" "g" "Ğ" "g" "ü" "u" "Ü" "u" "ş" "s" "Ş" "s" "ö" "o" "Ö" "o" "ç" "c" "Ç" "c" }}
+{{- $n := 0 }}
 {{- range site.Data.publications }}
+{{- $type := .type }}
 <h3 id="{{ .section | anchorize }}">{{ .section }}</h3>
 <ul class="pub-list">
   {{- range .items }}
-  <li class="pub">
-    <div class="pub-year">{{ .year }}</div>
+  {{- $n = add $n 1 }}
+  {{- $id := printf "pub-%d" $n }}
+
+  {{- /* Authors: "Surname, I. I." for APA and "Surname, I. I. and ..." for BibTeX */ -}}
+  {{- $names := split (replace (replace .authors ", and " ", ") " and " ", ") ", " }}
+  {{- $apaNames := slice }}
+  {{- $firstSurname := "" }}
+  {{- range $names }}
+    {{- $initials := slice }}
+    {{- $surname := slice }}
+    {{- range split (trim . " ") " " }}
+      {{- if and (strings.HasSuffix . ".") (eq (len $surname) 0) }}{{ $initials = $initials | append . }}{{ else }}{{ $surname = $surname | append . }}{{ end }}
+    {{- end }}
+    {{- if eq $firstSurname "" }}{{ $firstSurname = delimit $surname "" }}{{ end }}
+    {{- $apaNames = $apaNames | append (printf "%s, %s" (delimit $surname " ") (delimit $initials " ")) }}
+  {{- end }}
+  {{- $apaAuthors := index $apaNames 0 }}
+  {{- if eq (len $apaNames) 2 }}
+    {{- $apaAuthors = printf "%s, & %s" (index $apaNames 0) (index $apaNames 1) }}
+  {{- else if gt (len $apaNames) 2 }}
+    {{- $apaAuthors = printf "%s, & %s" (delimit (first (sub (len $apaNames) 1) $apaNames) ", ") (index $apaNames (sub (len $apaNames) 1)) }}
+  {{- end }}
+  {{- $bibAuthors := delimit $apaNames " and " }}
+  {{- $apaAuthors = htmlEscape $apaAuthors }}
+
+  {{- /* Shared pieces */ -}}
+  {{- $title := .title }}
+  {{- $titleEnd := cond (or (strings.HasSuffix $title "?") (strings.HasSuffix $title "!")) "" "." }}
+  {{- $url := "" }}
+  {{- $doi := "" }}
+  {{- range .links }}
+    {{- if eq .label "DOI" }}{{ $doi = strings.TrimPrefix "https://doi.org/" .url }}{{ else if eq $url "" }}{{ $url = .url }}{{ end }}
+  {{- end }}
+  {{- $yearStr := cond (ne (string .year) "") (string .year) "n.d." }}
+  {{- $key := lower (printf "%s%s%s" $firstSurname (cond .year (string .year) "") (index (split $title " ") 0)) }}
+  {{- range $from, $to := $ascii }}{{ $key = replace $key $from $to }}{{ end }}
+  {{- $key = replaceRE `[^a-z0-9]` "" $key }}
+
+  {{- /* Display line under the authors */ -}}
+  {{- $venueLine := slice }}
+  {{- if eq $type "thesis" }}
+    {{- $venueLine = $venueLine | append (printf "%s, %s" (cond (eq .thesis "phd") "Ph.D. dissertation" "Master's thesis") .venue) }}
+  {{- else }}
+    {{- $venueLine = $venueLine | append .venue }}
+  {{- end }}
+  {{- if .volume }}{{ $venueLine = $venueLine | append (printf "vol. %v, no. %v, pp. %v" .volume .issue .pages) }}{{ end }}
+  {{- if and .month .year }}{{ $venueLine = $venueLine | append (printf "%s %v" .month .year) }}{{ end }}
+
+  {{- /* APA 7 (HTML) and BibTeX */ -}}
+  {{- $apa := "" }}
+  {{- $bib := "" }}
+  {{- $bibFields := slice (printf "  author    = {%s}" $bibAuthors) (printf "  title     = {{%s}}" $title) }}
+  {{- if eq $type "article" }}
+    {{- if .status }}
+      {{- $apa = printf "%s (%s). <i>%s</i> [Manuscript submitted for publication]." $apaAuthors $yearStr (htmlEscape $title) }}
+      {{- $bibFields = $bibFields | append (printf "  note      = {Manuscript submitted for publication}") }}
+      {{- $bib = "unpublished" }}
+    {{- else }}
+      {{- $apa = printf "%s (%s). %s%s <i>%s</i>, <i>%v</i>(%v), %v." $apaAuthors $yearStr (htmlEscape $title) $titleEnd (htmlEscape .venue) .volume .issue .pages }}
+      {{- with $doi }}{{ $apa = printf "%s https://doi.org/%s" $apa . }}{{ end }}
+      {{- $bibFields = $bibFields | append (printf "  journal   = {%s}" .venue) (printf "  year      = {%v}" .year) (printf "  volume    = {%v}" .volume) (printf "  number    = {%v}" .issue) (printf "  pages     = {%s}" (replace (string .pages) "–" "--")) }}
+      {{- with $doi }}{{ $bibFields = $bibFields | append (printf "  doi       = {%s}" .) }}{{ end }}
+      {{- $bib = "article" }}
+    {{- end }}
+  {{- else if eq $type "conference" }}
+    {{- $apa = printf "%s (%s, %s). <i>%s</i> [%s]. %s." $apaAuthors $yearStr .month (htmlEscape $title) (.format | default "Paper presentation") (htmlEscape .venue) }}
+    {{- with $url }}{{ $apa = printf "%s %s" $apa . }}{{ end }}
+    {{- $bibFields = $bibFields | append (printf "  booktitle = {%s}" .venue) (printf "  year      = {%v}" .year) (printf "  month     = {%s}" .month) }}
+    {{- with $url }}{{ $bibFields = $bibFields | append (printf "  url       = {%s}" .) }}{{ end }}
+    {{- $bib = "inproceedings" }}
+  {{- else if eq $type "thesis" }}
+    {{- $kind := cond (eq .thesis "phd") "Doctoral dissertation" "Master's thesis" }}
+    {{- if .status }}{{ $kind = printf "%s in progress" $kind }}{{ end }}
+    {{- $apa = printf "%s (%s). <i>%s</i> [%s, %s]." $apaAuthors $yearStr (htmlEscape $title) $kind (htmlEscape .venue) }}
+    {{- with $url }}{{ $apa = printf "%s %s" $apa . }}{{ end }}
+    {{- $bibFields = $bibFields | append (printf "  school    = {%s}" .venue) }}
+    {{- with .year }}{{ $bibFields = $bibFields | append (printf "  year      = {%v}" .) }}{{ end }}
+    {{- with .status }}{{ $bibFields = $bibFields | append (printf "  note      = {%s}" .) }}{{ end }}
+    {{- with $url }}{{ $bibFields = $bibFields | append (printf "  url       = {%s}" .) }}{{ end }}
+    {{- $bib = cond (eq .thesis "phd") "phdthesis" "mastersthesis" }}
+  {{- end }}
+  {{- $bibtex := printf "@%s{%s,\n%s\n}" $bib $key (delimit $bibFields ",\n") }}
+
+  <li class="pub" id="{{ $id }}">
+    <div class="pub-year">{{ .yearLabel | default .year }}</div>
     <div class="pub-body">
       <div class="pub-title">{{ .title }}</div>
       <div class="pub-authors">{{ replace (.authors | htmlEscape) $me (printf "<strong>%s</strong>" $me) | safeHTML }}</div>
-      <div class="pub-venue">
-        <em>{{ .venue }}</em>
-        {{- with .details }} · {{ . }}{{ end }}
-      </div>
-      {{- if or .status .links }}
+      <div class="pub-venue"><em>{{ index $venueLine 0 }}</em>{{ range after 1 $venueLine }} · {{ . }}{{ end }}</div>
       <div class="pub-tags">
         {{- with .status }}<span class="pub-status">{{ . }}</span>{{ end }}
         {{- range .links }}<a class="pub-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}
+        {{- if .abstract }}<button type="button" class="pub-link pub-toggle" aria-expanded="false" aria-controls="{{ $id }}-abstract">Abstract</button>{{ end }}
+        <button type="button" class="pub-link pub-toggle" aria-expanded="false" aria-controls="{{ $id }}-cite">Cite</button>
       </div>
+      {{- with .abstract }}
+      <div class="pub-panel pub-abstract" id="{{ $id }}-abstract" hidden>{{ . | markdownify }}</div>
       {{- end }}
+      <div class="pub-panel pub-cite" id="{{ $id }}-cite" hidden>
+        <div class="cite-block">
+          <div class="cite-head"><span>APA 7</span><button type="button" class="cite-copy" data-copy="{{ $id }}-apa">Copy</button></div>
+          <p class="cite-text" id="{{ $id }}-apa">{{ $apa | safeHTML }}</p>
+        </div>
+        <div class="cite-block">
+          <div class="cite-head"><span>BibTeX</span><button type="button" class="cite-copy" data-copy="{{ $id }}-bib">Copy</button></div>
+          <pre class="cite-text" id="{{ $id }}-bib">{{ $bibtex }}</pre>
+        </div>
+      </div>
     </div>
   </li>
   {{- end }}
 </ul>
 {{- end }}
+<script>
+  document.addEventListener("click", function (e) {
+    var toggle = e.target.closest(".pub-toggle");
+    if (toggle) {
+      var panel = document.getElementById(toggle.getAttribute("aria-controls"));
+      var open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!open));
+      panel.hidden = open;
+      return;
+    }
+    var copy = e.target.closest(".cite-copy");
+    if (copy && navigator.clipboard) {
+      var text = document.getElementById(copy.dataset.copy).innerText.trim();
+      navigator.clipboard.writeText(text).then(function () {
+        copy.textContent = "Copied";
+        setTimeout(function () { copy.textContent = "Copy"; }, 1500);
+      });
+    }
+  });
+</script>

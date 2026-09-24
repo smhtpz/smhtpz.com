@@ -20,10 +20,14 @@
                     {{- $darkLogoPath := .dark }}
                     {{- $altText := .alt | default site.Title }}
                     {{- with resources.Get $lightLogoPath }}
-                        <img src="{{ .RelPermalink }}" alt="{{ $altText }}" height="35" class="logo-light">
+                        {{- /* Source is ~3000px wide; serve a 2x-retina copy of the 35px-high logo. */}}
+                        {{- $logo := .Resize "x70" }}
+                        <img src="{{ $logo.RelPermalink }}" alt="{{ $altText }}" height="35" width="{{ div $logo.Width 2 }}" class="logo-light">
                     {{- end -}}
                     {{- with resources.Get $darkLogoPath }}
-                        <img src="{{ .RelPermalink }}" alt="{{ $altText }}" height="35" class="logo-dark">
+                        {{- /* Source is ~3000px wide; serve a 2x-retina copy of the 35px-high logo. */}}
+                        {{- $logo := .Resize "x70" }}
+                        <img src="{{ $logo.RelPermalink }}" alt="{{ $altText }}" height="35" width="{{ div $logo.Width 2 }}" class="logo-dark">
                     {{- end -}}
                 {{- else -}}
                     {{- site.Title -}}

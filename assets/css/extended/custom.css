@@ -275,3 +275,85 @@ body.dark .pub-status {
     background: var(--tertiary);
     color: var(--primary);
 }
+
+/* Home: research interest tags */
+.profile .interests {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 28px auto 0;
+    max-width: 560px;
+}
+.profile .interests li {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--secondary);
+    padding: 5px 12px;
+    border: 1px solid var(--tertiary);
+    border-radius: 999px;
+}
+
+/* Publications: Cite / Abstract toggles and panels */
+.post-content button.pub-link {
+    background: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+.post-content button.pub-link[aria-expanded="true"] {
+    background: var(--accent);
+    color: #fff;
+}
+.pub-panel {
+    margin-top: 12px;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    background: var(--code-bg);
+    font-size: 15px;
+    line-height: 1.6;
+}
+.pub-panel[hidden] {
+    display: none;
+}
+.pub-panel p {
+    margin: 0;
+}
+.cite-block + .cite-block {
+    margin-top: 14px;
+}
+.cite-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--secondary);
+}
+.cite-copy {
+    font: inherit;
+    font-size: 12px;
+    color: var(--accent);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px 4px;
+}
+.cite-copy:hover {
+    text-decoration: underline;
+}
+.post-content pre.cite-text {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: var(--content);
+}

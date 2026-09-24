@@ -22,7 +22,10 @@ theme = "PaperMod"
     weight = 20
 
 [params]
-    defaultTheme = "dark" 
+    description = "Semih Topuz — PhD candidate in Educational Measurement and Evaluation, researching AI, psychometrics, and data-driven assessment."
+    author = "Semih Topuz"
+    images = ["images/og-image.png"]
+    defaultTheme = "dark"
     ShowShareButtons = false
     
     [params.logo]

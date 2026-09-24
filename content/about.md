@@ -1,5 +1,6 @@
 +++
 draft = false
+hideMeta = true
 description = 'About Semih Topuz: background in psychological counseling, graduate studies in Educational Measurement and Evaluation at Hacettepe University, research on AI and psychometrics at Başkent University, and a visiting scholarship at UMass Amherst.'
 title = 'About'
 +++

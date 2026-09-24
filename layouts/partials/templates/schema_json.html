@@ -95,8 +95,13 @@
   "image": {{ .Permalink }},
     {{- end }}
   {{- end -}}
+  {{- /* Pages without a date (About, Publications) would otherwise print 0001-01-01. */}}
+  {{- if not .PublishDate.IsZero }}
   "datePublished": {{ .PublishDate }},
+  {{- end }}
+  {{- if not .Lastmod.IsZero }}
   "dateModified": {{ .Lastmod }},
+  {{- end }}
   {{- with (.Params.author | default site.Params.author) }}
   "author":
     {{- if (or (eq (printf "%T" .) "[]string") (eq (printf "%T" .) "[]interface {}")) -}}

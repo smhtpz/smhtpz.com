@@ -35,12 +35,17 @@ body.dark .logo img.logo-light {
     width: auto;
 }
 
-/* Brand accent (logo blue) */
+/* Brand accent: the exact blue of the logo (#167abe).
+   It is used as-is for fills, borders and underlines in both themes.
+   Small text uses --accent-text: the same blue on light backgrounds
+   (4.6:1 contrast), but the normal text colour on dark backgrounds,
+   where this blue would be too dark to read (3.6:1). */
 :root {
-    --accent: #177bbf;
+    --accent: #167abe;
+    --accent-text: #167abe;
 }
 body.dark {
-    --accent: #3a9ad9;
+    --accent-text: var(--primary);
 }
 
 /* Page descriptions are for search engines and link previews only */
@@ -58,13 +63,13 @@ body.dark {
     color: #fff;
 }
 .social-icons a:hover {
-    color: var(--accent);
+    color: var(--accent-text);
 }
 
 /* Navigation */
 #menu a:hover,
 #menu .active {
-    color: var(--accent);
+    color: var(--accent-text);
 }
 #menu .active {
     border-bottom-color: var(--accent);
@@ -75,7 +80,7 @@ body.dark {
     box-shadow: 0 1px 0 var(--accent);
 }
 .post-content a:hover {
-    color: var(--accent);
+    color: var(--accent-text);
 }
 
 /* Section headings on content pages */
@@ -171,7 +176,7 @@ body {
     border-radius: 999px;
 }
 .post-content .pub-link {
-    color: var(--accent);
+    color: var(--accent-text);
     border: 1px solid var(--accent);
     box-shadow: none;
 }
@@ -226,7 +231,7 @@ body.dark .pub-status {
 .tl-period {
     font-size: 13px;
     font-weight: 600;
-    color: var(--accent);
+    color: var(--accent-text);
     text-transform: uppercase;
     letter-spacing: 0.04em;
 }
@@ -276,52 +281,84 @@ body.dark .pub-status {
     color: var(--primary);
 }
 
-/* Home: research interest tags */
-.profile .interests {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    list-style: none;
-    padding: 0;
-    margin: 28px auto 0;
-    max-width: 560px;
-}
-.profile .interests li {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--secondary);
-    padding: 5px 12px;
-    border: 1px solid var(--tertiary);
-    border-radius: 999px;
-}
-
-/* Publications: Cite / Abstract toggles and panels */
+/* Publications: Cite / Abstract buttons open modal dialogs */
 .post-content button.pub-link {
     background: none;
     font-family: inherit;
     cursor: pointer;
 }
-.post-content button.pub-link[aria-expanded="true"] {
-    background: var(--accent);
-    color: #fff;
+html.dialog-open {
+    overflow: hidden;
 }
-.pub-panel {
-    margin-top: 12px;
-    padding: 14px 16px;
-    border-radius: var(--radius);
-    background: var(--code-bg);
+.pub-dialog {
+    width: min(680px, calc(100vw - 32px));
+    max-height: calc(100vh - 64px);
+    padding: 0;
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--accent);
+    border-radius: 12px;
+    background: var(--entry);
+    color: var(--content);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+.pub-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.55);
+}
+.dialog-head {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px 14px;
+    background: var(--entry);
+    border-bottom: 1px solid var(--border);
+}
+.dialog-kind {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+}
+.dialog-title {
+    margin: 4px 0 0;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--primary);
+}
+.dialog-close {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--secondary);
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.dialog-close:hover {
+    color: var(--primary);
+    background: var(--tertiary);
+}
+.dialog-body {
+    padding: 16px 20px 20px;
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.65;
 }
-.pub-panel[hidden] {
-    display: none;
-}
-.pub-panel p {
+.dialog-body p {
     margin: 0;
 }
+.cite-block {
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: var(--code-bg);
+}
 .cite-block + .cite-block {
-    margin-top: 14px;
+    margin-top: 12px;
 }
 .cite-head {
     display: flex;
@@ -337,16 +374,20 @@ body.dark .pub-status {
 .cite-copy {
     font: inherit;
     font-size: 12px;
-    color: var(--accent);
-    background: none;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
     border: none;
+    border-radius: 999px;
+    padding: 4px 12px;
     cursor: pointer;
-    padding: 2px 4px;
+    text-transform: none;
+    letter-spacing: 0;
 }
 .cite-copy:hover {
-    text-decoration: underline;
+    filter: brightness(1.1);
 }
-.post-content pre.cite-text {
+.pub-dialog pre.cite-text {
     margin: 0;
     padding: 0;
     background: none;
@@ -356,4 +397,10 @@ body.dark .pub-status {
     white-space: pre-wrap;
     word-break: break-word;
     color: var(--content);
+}
+.post-content .pub-link:focus-visible,
+.dialog-close:focus-visible,
+.cite-copy:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }

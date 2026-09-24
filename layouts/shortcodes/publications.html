@@ -102,44 +102,96 @@
       <div class="pub-tags">
         {{- with .status }}<span class="pub-status">{{ . }}</span>{{ end }}
         {{- range .links }}<a class="pub-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}
-        {{- if .abstract }}<button type="button" class="pub-link pub-toggle" aria-expanded="false" aria-controls="{{ $id }}-abstract">Abstract</button>{{ end }}
-        <button type="button" class="pub-link pub-toggle" aria-expanded="false" aria-controls="{{ $id }}-cite">Cite</button>
+        {{- if .abstract }}<button type="button" class="pub-link pub-open" aria-haspopup="dialog" data-dialog="{{ $id }}-abstract">Abstract</button>{{ end }}
+        <button type="button" class="pub-link pub-open" aria-haspopup="dialog" data-dialog="{{ $id }}-cite">Cite</button>
       </div>
       {{- with .abstract }}
-      <div class="pub-panel pub-abstract" id="{{ $id }}-abstract" hidden>{{ . | markdownify }}</div>
+      <dialog class="pub-dialog" id="{{ $id }}-abstract" aria-labelledby="{{ $id }}-abstract-title">
+        <div class="dialog-head">
+          <div>
+            <span class="dialog-kind">Abstract</span>
+            <p class="dialog-title" id="{{ $id }}-abstract-title">{{ $title }}</p>
+          </div>
+          <button type="button" class="dialog-close" aria-label="Close">&times;</button>
+        </div>
+        <div class="dialog-body pub-abstract">{{ . | markdownify }}</div>
+      </dialog>
       {{- end }}
-      <div class="pub-panel pub-cite" id="{{ $id }}-cite" hidden>
-        <div class="cite-block">
-          <div class="cite-head"><span>APA 7</span><button type="button" class="cite-copy" data-copy="{{ $id }}-apa">Copy</button></div>
-          <p class="cite-text" id="{{ $id }}-apa">{{ $apa | safeHTML }}</p>
+      <dialog class="pub-dialog" id="{{ $id }}-cite" aria-labelledby="{{ $id }}-cite-title">
+        <div class="dialog-head">
+          <div>
+            <span class="dialog-kind">Cite</span>
+            <p class="dialog-title" id="{{ $id }}-cite-title">{{ $title }}</p>
+          </div>
+          <button type="button" class="dialog-close" aria-label="Close">&times;</button>
         </div>
-        <div class="cite-block">
-          <div class="cite-head"><span>BibTeX</span><button type="button" class="cite-copy" data-copy="{{ $id }}-bib">Copy</button></div>
-          <pre class="cite-text" id="{{ $id }}-bib">{{ $bibtex }}</pre>
+        <div class="dialog-body">
+          <div class="cite-block">
+            <div class="cite-head"><span>APA 7</span><button type="button" class="cite-copy" data-copy="{{ $id }}-apa">Copy</button></div>
+            <p class="cite-text" id="{{ $id }}-apa">{{ $apa | safeHTML }}</p>
+          </div>
+          <div class="cite-block">
+            <div class="cite-head"><span>BibTeX</span><button type="button" class="cite-copy" data-copy="{{ $id }}-bib">Copy</button></div>
+            <pre class="cite-text" id="{{ $id }}-bib">{{ $bibtex }}</pre>
+          </div>
         </div>
-      </div>
+      </dialog>
     </div>
   </li>
   {{- end }}
 </ul>
 {{- end }}
 <script>
-  document.addEventListener("click", function (e) {
-    var toggle = e.target.closest(".pub-toggle");
-    if (toggle) {
-      var panel = document.getElementById(toggle.getAttribute("aria-controls"));
-      var open = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!open));
-      panel.hidden = open;
-      return;
+  (function () {
+    function closeDialog(d) {
+      d.close();
     }
-    var copy = e.target.closest(".cite-copy");
-    if (copy && navigator.clipboard) {
-      var text = document.getElementById(copy.dataset.copy).innerText.trim();
-      navigator.clipboard.writeText(text).then(function () {
-        copy.textContent = "Copied";
-        setTimeout(function () { copy.textContent = "Copy"; }, 1500);
+    document.addEventListener("click", function (e) {
+      var opener = e.target.closest(".pub-open");
+      if (opener) {
+        var d = document.getElementById(opener.dataset.dialog);
+        if (d && d.showModal) {
+          d.showModal();
+          document.documentElement.classList.add("dialog-open");
+        }
+        return;
+      }
+      if (e.target.closest(".dialog-close")) {
+        closeDialog(e.target.closest("dialog"));
+        return;
+      }
+      // Click on the backdrop (outside the dialog box) closes it.
+      if (e.target.tagName === "DIALOG" && e.target.classList.contains("pub-dialog")) {
+        var r = e.target.getBoundingClientRect();
+        if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) {
+          closeDialog(e.target);
+        }
+        return;
+      }
+      var copy = e.target.closest(".cite-copy");
+      if (copy) {
+        var text = document.getElementById(copy.dataset.copy).innerText.trim();
+        var done = function () {
+          copy.textContent = "Copied";
+          setTimeout(function () { copy.textContent = "Copy"; }, 1500);
+        };
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(done);
+        } else {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          copy.closest("dialog").appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+          done();
+        }
+      }
+    });
+    document.querySelectorAll(".pub-dialog").forEach(function (d) {
+      d.addEventListener("close", function () {
+        document.documentElement.classList.remove("dialog-open");
       });
-    }
-  });
+    });
+  })();
 </script>

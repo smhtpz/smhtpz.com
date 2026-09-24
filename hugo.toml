@@ -61,8 +61,6 @@ enableRobotsTXT = true
         enabled = true
         title = "Semih Topuz"
         subtitle = "PhD Candidate in Educational Measurement and Evaluation\\\nVisiting Scholar at UMass Amherst College of Education\\\nResearch focus: AI, Psychometrics, and Data-Driven Assessment"
-        
-        interests = ["Psychometrics", "Validity", "AI in Assessment", "Computerized Adaptive Testing", "Large Language Models"]
 
         [[params.profileMode.buttons]]
             name = "Publications"

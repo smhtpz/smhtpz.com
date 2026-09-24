@@ -2,6 +2,7 @@ baseURL = "https://www.smhtpz.com/"
 languageCode = "en-us"
 title = "Semih Topuz"
 theme = "PaperMod"
+enableRobotsTXT = true
 
 [languages]
   [languages.en]
@@ -27,7 +28,26 @@ theme = "PaperMod"
     images = ["images/og-image.png"]
     defaultTheme = "dark"
     ShowShareButtons = false
-    
+
+    # Site verification codes (Google Search Console, Bing Webmaster Tools).
+    # Paste only the "content" value of the verification meta tag.
+    [params.analytics.google]
+        SiteVerificationTag = ""
+    [params.analytics.bing]
+        SiteVerificationTag = ""
+
+    # Cloudflare Web Analytics beacon token. Leave empty if analytics is
+    # enabled from the Cloudflare Pages dashboard instead.
+    [params.cloudflareAnalytics]
+        token = ""
+
+    # schema.org Person data for the home page (layouts/partials/templates/schema_json.html).
+    [params.schema]
+        jobTitle = "Research Assistant"
+        worksFor = "Başkent University"
+        alumniOf = "Hacettepe University"
+        knowsAbout = ["Educational Measurement and Evaluation", "Psychometrics", "Artificial Intelligence", "Machine Learning", "Computerized Adaptive Testing", "Large Language Models"]
+
     [params.logo]
         light = "images/logo-light.png"
         dark = "images/logo-dark.png"

@@ -1,5 +1,6 @@
 +++
 draft = false
+description = 'About Semih Topuz: background in psychological counseling, graduate studies in Educational Measurement and Evaluation at Hacettepe University, and research on AI and psychometrics at Başkent University.'
 title = 'About'
 +++
 

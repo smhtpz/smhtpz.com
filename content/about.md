@@ -5,6 +5,8 @@ description = 'About Semih Topuz: background in psychological counseling, gradua
 title = 'About'
 +++
 
+{{< timeline >}}
+
 ### Assessment. Validity. Technology.
 
 My academic journey began with a foundation in the human side of learning through my studies in Psychological Counseling and Guidance. This perspective sparked a deeper question that has since guided my career: How can we more accurately, fairly, and effectively understand and measure educational progress? This inquiry led me to the quantitative and analytical field of Educational Measurement and Evaluation at Hacettepe University, where I have pursued both my Master's and doctoral degrees.

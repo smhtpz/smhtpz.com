@@ -1,0 +1,13 @@
+{{- define "main" }}
+<div class="not-found-page">
+    <p class="nf-code">404</p>
+    <h1>Page not found</h1>
+    <p>The page you are looking for doesn't exist or may have moved.</p>
+    <div class="nf-links">
+        <a class="button" href="{{ site.Home.RelPermalink }}">Home</a>
+        {{- range site.Menus.main }}
+        <a class="button" href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+        {{- end }}
+    </div>
+</div>
+{{- end }}{{/* end main */ -}}

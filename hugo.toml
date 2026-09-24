@@ -26,8 +26,10 @@ enableRobotsTXT = true
     description = "Semih Topuz — PhD candidate in Educational Measurement and Evaluation, researching AI, psychometrics, and data-driven assessment."
     author = "Semih Topuz"
     images = ["images/og-image.png"]
-    defaultTheme = "dark"
+    defaultTheme = "auto"
     ShowShareButtons = false
+    # Highlighted in author lists on the Publications page.
+    pubAuthorName = "S. Topuz"
 
     # Site verification codes (Google Search Console, Bing Webmaster Tools).
     # Paste only the "content" value of the verification meta tag.
@@ -77,3 +79,6 @@ enableRobotsTXT = true
 [[params.socialIcons]]
     name = "linkedin"
     url = "https://linkedin.com/in/smhtpz"
+[[params.socialIcons]]
+    name = "orcid"
+    url = "https://orcid.org/0000-0003-1398-4507"

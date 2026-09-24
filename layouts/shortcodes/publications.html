@@ -1,0 +1,26 @@
+{{- /* Renders data/publications.yaml. The site owner's name is highlighted in author lists. */ -}}
+{{- $me := site.Params.pubAuthorName | default "S. Topuz" }}
+{{- range site.Data.publications }}
+<h3 id="{{ .section | anchorize }}">{{ .section }}</h3>
+<ul class="pub-list">
+  {{- range .items }}
+  <li class="pub">
+    <div class="pub-year">{{ .year }}</div>
+    <div class="pub-body">
+      <div class="pub-title">{{ .title }}</div>
+      <div class="pub-authors">{{ replace (.authors | htmlEscape) $me (printf "<strong>%s</strong>" $me) | safeHTML }}</div>
+      <div class="pub-venue">
+        <em>{{ .venue }}</em>
+        {{- with .details }} · {{ . }}{{ end }}
+      </div>
+      {{- if or .status .links }}
+      <div class="pub-tags">
+        {{- with .status }}<span class="pub-status">{{ . }}</span>{{ end }}
+        {{- range .links }}<a class="pub-link" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>{{ end }}
+      </div>
+      {{- end }}
+    </div>
+  </li>
+  {{- end }}
+</ul>
+{{- end }}

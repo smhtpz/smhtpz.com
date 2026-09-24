@@ -1,0 +1,11 @@
+{{- /* Renders data/timeline.yaml as a vertical timeline. */ -}}
+<ol class="timeline">
+  {{- range site.Data.timeline }}
+  <li>
+    <span class="tl-period">{{ .period }}</span>
+    <span class="tl-role">{{ .role }}</span>
+    <span class="tl-place">{{ .place }}</span>
+    {{- with .note }}<span class="tl-note">{{ . }}</span>{{ end }}
+  </li>
+  {{- end }}
+</ol>

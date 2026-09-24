@@ -1,6 +1,6 @@
 +++
 draft = false
-description = 'About Semih Topuz: background in psychological counseling, graduate studies in Educational Measurement and Evaluation at Hacettepe University, and research on AI and psychometrics at Başkent University.'
+description = 'About Semih Topuz: background in psychological counseling, graduate studies in Educational Measurement and Evaluation at Hacettepe University, research on AI and psychometrics at Başkent University, and a visiting scholarship at UMass Amherst.'
 title = 'About'
 +++
 
@@ -10,4 +10,6 @@ My academic journey began with a foundation in the human side of learning throug
 
 During my studies, I specialized in the intersection of modern psychometrics and technology. My work is driven by the conviction that the future of meaningful assessment lies in leveraging computational tools. I focus on applying machine learning and AI to interrogate complex assessment data, aiming not only to enhance predictive accuracy but also to uncover novel forms of validity evidence that traditional methods might miss. This commitment is about improving the efficiency and equity of how we measure knowledge and skills.
 
-As a Research Assistant at Başkent University, I am actively engaged in the academic community while advancing my Ph.D. research. My ultimate goal is to contribute to the development of next-generation assessment models that are more adaptive and insightful. I am particularly interested in how Large Language Models (LLMs) can be responsibly harnessed to create more authentic and equitable evaluation tools for a new generation of learners. You can explore my specific research projects and publications on this site.
+I am currently spending nine months as a Visiting Scholar at the College of Education, University of Massachusetts Amherst, working with Prof. Stephen G. Sireci at the [Center for Educational Assessment](https://www.umass.edu/education/organizations/center-educational-assessment). My visit is supported by TÜBİTAK's 2214-A International Research Fellowship Programme for PhD Students, and its primary focus is my doctoral dissertation.
+
+As a Research Assistant at Başkent University and a Ph.D. candidate at Hacettepe University, I am actively engaged in the academic community while advancing my Ph.D. research. My ultimate goal is to contribute to the development of next-generation assessment models that are more adaptive and insightful. I am particularly interested in how Large Language Models (LLMs) can be responsibly harnessed to create more authentic and equitable evaluation tools for a new generation of learners. You can explore my specific research projects and publications on this site.

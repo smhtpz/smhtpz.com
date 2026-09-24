@@ -46,6 +46,8 @@ enableRobotsTXT = true
         jobTitle = "Research Assistant"
         worksFor = "Başkent University"
         alumniOf = "Hacettepe University"
+        # Other current affiliations (PhD candidacy, visiting scholarship).
+        affiliation = ["Hacettepe University", "University of Massachusetts Amherst"]
         knowsAbout = ["Educational Measurement and Evaluation", "Psychometrics", "Artificial Intelligence", "Machine Learning", "Computerized Adaptive Testing", "Large Language Models"]
 
     [params.logo]
@@ -56,7 +58,7 @@ enableRobotsTXT = true
     [params.profileMode]
         enabled = true
         title = "Semih Topuz"
-        subtitle = "PhD Candidate in Educational Measurement and Evaluation | Researcher focusing on AI, Psychometrics, and Data-Driven Assessment"
+        subtitle = "PhD Candidate in Educational Measurement and Evaluation | Visiting Scholar at UMass Amherst College of Education | Researcher focusing on AI, Psychometrics, and Data-Driven Assessment"
         
         [[params.profileMode.buttons]]
             name = "Publications"

@@ -15,6 +15,11 @@
 {{- with $schema.jobTitle }}{{ $person = merge $person (dict "jobTitle" .) }}{{ end }}
 {{- with $schema.worksFor }}{{ $person = merge $person (dict "worksFor" (dict "@type" "CollegeOrUniversity" "name" .)) }}{{ end }}
 {{- with $schema.alumniOf }}{{ $person = merge $person (dict "alumniOf" (dict "@type" "CollegeOrUniversity" "name" .)) }}{{ end }}
+{{- with $schema.affiliation }}
+  {{- $orgs := slice }}
+  {{- range . }}{{ $orgs = $orgs | append (dict "@type" "CollegeOrUniversity" "name" .) }}{{ end }}
+  {{- $person = merge $person (dict "affiliation" $orgs) }}
+{{- end }}
 {{- with $schema.knowsAbout }}{{ $person = merge $person (dict "knowsAbout" .) }}{{ end }}
 {{- with $schema.image }}{{ $person = merge $person (dict "image" (absURL .)) }}{{ end }}
 <script type="application/ld+json">

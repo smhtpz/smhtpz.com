@@ -13,15 +13,17 @@ title = 'Publications'
 
 ### Conference Proceedings
 
-1.  E. Kınay Çiçek, S. Topuz, G. Berberoğlu, and K. B. Demirus, "Investigation of measurement invariance and differential item function by course and instructor characteristics in student evaluations of instruction in higher education," *Eskişehir, Türkiye: AMEEP*, Sep. 2024. URL: [https://kongre.epodder.org/](https://kongre.epodder.org/).
+1.  S. Topuz, "Semantic–Empirical Mismatches in Social and Emotional Skills," *Auckland, New Zealand: ITC*, Jul. 2026. URL: [https://conference.intestcom.org/](https://conference.intestcom.org/).
 
-2.  S. Topuz, G. Berberoğlu, E. Kınay Çiçek, and K. B. Demirus, "Can computer adaptive version of students' ratings of instruction provide valid results?," *Seoul, South Korea: IACAT*, Sep. 2024. URL: [https://iacat2024.com/home](https://iacat2024.com/home).
+2.  E. Kınay Çiçek, S. Topuz, G. Berberoğlu, and K. B. Demirus, "Investigation of measurement invariance and differential item function by course and instructor characteristics in student evaluations of instruction in higher education," *Eskişehir, Türkiye: AMEEP*, Sep. 2024. URL: [https://kongre.epodder.org/](https://kongre.epodder.org/).
 
-3.  S. Topuz, S. Gökçe, and G. Berberoğlu, "Comparison of the PISA reading skills test across language and country groups," *Eskişehir, Türkiye: AMEEP*, Sep. 2024. URL: [https://kongre.epodder.org/](https://kongre.epodder.org/).
+3.  S. Topuz, G. Berberoğlu, E. Kınay Çiçek, and K. B. Demirus, "Can computer adaptive version of students' ratings of instruction provide valid results?," *Seoul, South Korea: IACAT*, Sep. 2024. URL: [https://iacat2024.com/home](https://iacat2024.com/home).
 
-4.  S. Topuz, G. Berberoglu, E. Kınay Çiçek, and K. B. Demirus, "Can the course and instructor evaluation form be applied as an computer adaptive test?," *İstanbul, Türkiye*, Sep. 2023. URL: [https://sempozyum.adaptivetest.net/wp-content/uploads/2023/08/butas-2023-ozet.pdf](https://sempozyum.adaptivetest.net/wp-content/uploads/2023/08/butas-2023-ozet.pdf).
+4.  S. Topuz, S. Gökçe, and G. Berberoğlu, "Comparison of the PISA reading skills test across language and country groups," *Eskişehir, Türkiye: AMEEP*, Sep. 2024. URL: [https://kongre.epodder.org/](https://kongre.epodder.org/).
 
-5.  S. Topuz, "Investigation of measurement invariance of Survey on Social and Emotional Skills by language family.," *İzmir, Türkiye: AMEEP*, Sep. 2022. URL: [https://epodder.org/wp-content/uploads/2023/01/cmeep-2022.pdf](https://epodder.org/wp-content/uploads/2023/01/cmeep-2022.pdf).
+5.  S. Topuz, G. Berberoglu, E. Kınay Çiçek, and K. B. Demirus, "Can the course and instructor evaluation form be applied as an computer adaptive test?," *İstanbul, Türkiye*, Sep. 2023. URL: [https://sempozyum.adaptivetest.net/wp-content/uploads/2023/08/butas-2023-ozet.pdf](https://sempozyum.adaptivetest.net/wp-content/uploads/2023/08/butas-2023-ozet.pdf).
+
+6.  S. Topuz, "Investigation of measurement invariance of Survey on Social and Emotional Skills by language family.," *İzmir, Türkiye: AMEEP*, Sep. 2022. URL: [https://epodder.org/wp-content/uploads/2023/01/cmeep-2022.pdf](https://epodder.org/wp-content/uploads/2023/01/cmeep-2022.pdf).
 
 ---
 

@@ -15,15 +15,19 @@
         <div class="logo">
             <a href="{{ site.Home.RelPermalink | absLangURL }}" accesskey="h" title="{{ site.Params.logo.alt | default site.Title }} (Alt + H)">
                 {{- with site.Params.logo -}}
-                    <h1 class="logo-title visually-hidden">{{ site.Title }}</h1>
+                    <span class="logo-title visually-hidden">{{ site.Title }}</span>
                     {{- $lightLogoPath := .light }}
                     {{- $darkLogoPath := .dark }}
                     {{- $altText := .alt | default site.Title }}
                     {{- with resources.Get $lightLogoPath }}
-                        <img src="{{ .RelPermalink }}" alt="{{ $altText }}" height="35" class="logo-light">
+                        {{- /* Source is ~3000px wide; serve a 3x copy of the 35px-high logo so it stays sharp on high-density screens. */}}
+                        {{- $logo := .Resize "x105" }}
+                        <img src="{{ $logo.RelPermalink }}" alt="{{ $altText }}" height="35" width="{{ div $logo.Width 3 }}" class="logo-light">
                     {{- end -}}
                     {{- with resources.Get $darkLogoPath }}
-                        <img src="{{ .RelPermalink }}" alt="{{ $altText }}" height="35" class="logo-dark">
+                        {{- /* Source is ~3000px wide; serve a 3x copy of the 35px-high logo so it stays sharp on high-density screens. */}}
+                        {{- $logo := .Resize "x105" }}
+                        <img src="{{ $logo.RelPermalink }}" alt="{{ $altText }}" height="35" width="{{ div $logo.Width 3 }}" class="logo-dark">
                     {{- end -}}
                 {{- else -}}
                     {{- site.Title -}}

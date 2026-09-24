@@ -34,3 +34,373 @@ body.dark .logo img.logo-light {
     height: 35px;
     width: auto;
 }
+
+/* Brand accent: the exact blue of the logo (#167abe).
+   It is used as-is for fills, borders and underlines in both themes.
+   Small text uses --accent-text: the same blue on light backgrounds
+   (4.6:1 contrast), but the normal text colour on dark backgrounds,
+   where this blue would be too dark to read (3.6:1). */
+:root {
+    --accent: #167abe;
+    --accent-text: #167abe;
+}
+body.dark {
+    --accent-text: var(--primary);
+}
+
+/* Page descriptions are for search engines and link previews only */
+.post-header .post-description {
+    display: none;
+}
+
+/* Home profile */
+.profile .profile_inner > span {
+    line-height: 1.7;
+}
+.button:hover,
+.profile .buttons .button:hover {
+    background: var(--accent);
+    color: #fff;
+}
+.social-icons a:hover {
+    color: var(--accent-text);
+}
+
+/* Navigation */
+#menu a:hover,
+#menu .active {
+    color: var(--accent-text);
+}
+#menu .active {
+    border-bottom-color: var(--accent);
+}
+
+/* Links inside pages */
+.post-content a {
+    box-shadow: 0 1px 0 var(--accent);
+}
+.post-content a:hover {
+    color: var(--accent-text);
+}
+
+/* Section headings on content pages */
+.post-content h3 {
+    padding-left: 12px;
+    border-left: 4px solid var(--accent);
+}
+.post-content hr {
+    margin: 32px 0;
+}
+
+
+/* Inter (self-hosted variable font, SIL OFL — see static/fonts/LICENSE.txt) */
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url("/fonts/inter-latin-ext-wght-normal.woff2") format("woff2-variations");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url("/fonts/inter-latin-wght-normal.woff2") format("woff2-variations");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-feature-settings: "cv11", "ss01";
+}
+.post-title,
+.profile_inner h1 {
+    letter-spacing: -0.02em;
+}
+
+/* Publications (layouts/shortcodes/publications.html) */
+.post-content .pub-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 8px;
+}
+.post-content .pub-list .pub {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    margin: 0;
+    border-bottom: 1px solid var(--border);
+}
+.post-content .pub-list .pub:last-child {
+    border-bottom: none;
+}
+.pub-year {
+    color: var(--secondary);
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+    padding-top: 2px;
+}
+.pub-title {
+    color: var(--primary);
+    font-weight: 600;
+    line-height: 1.45;
+}
+.pub-authors,
+.pub-venue {
+    font-size: 15px;
+    line-height: 1.55;
+    margin-top: 4px;
+}
+.pub-authors strong {
+    color: var(--primary);
+}
+.pub-venue {
+    color: var(--secondary);
+}
+.pub-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+.post-content .pub-link,
+.pub-status {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    padding: 6px 10px;
+    border-radius: 999px;
+}
+.post-content .pub-link {
+    color: var(--accent-text);
+    border: 1px solid var(--accent);
+    box-shadow: none;
+}
+.post-content .pub-link:hover {
+    background: var(--accent);
+    color: #fff;
+}
+.pub-status {
+    color: #9a6700;
+    background: rgba(212, 167, 44, 0.16);
+}
+body.dark .pub-status {
+    color: #e3b341;
+}
+@media (max-width: 600px) {
+    .post-content .pub-list .pub {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+}
+
+/* About timeline (layouts/shortcodes/timeline.html) */
+.post-content .timeline {
+    list-style: none;
+    padding: 0 0 0 22px;
+    margin: 0 0 40px;
+    border-left: 2px solid var(--tertiary);
+}
+.post-content .timeline li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 20px;
+}
+.post-content .timeline li:last-child {
+    margin-bottom: 0;
+}
+.post-content .timeline li::before {
+    content: "";
+    position: absolute;
+    left: -29px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--theme);
+    border: 2px solid var(--accent);
+}
+.post-content .timeline li:first-child::before {
+    background: var(--accent);
+}
+.tl-period {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-text);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+.tl-role {
+    color: var(--primary);
+    font-weight: 600;
+    line-height: 1.4;
+    margin-top: 2px;
+}
+.tl-place,
+.tl-note {
+    font-size: 15px;
+    color: var(--secondary);
+    line-height: 1.5;
+}
+
+/* 404 page */
+.not-found-page {
+    text-align: center;
+    padding: 80px 0;
+}
+.not-found-page .nf-code {
+    font-size: 96px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--accent);
+    margin-bottom: 16px;
+}
+.not-found-page h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+.not-found-page p {
+    color: var(--secondary);
+}
+.not-found-page .nf-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 28px;
+}
+.not-found-page .button {
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    background: var(--tertiary);
+    color: var(--primary);
+}
+
+/* Publications: Cite / Abstract buttons open modal dialogs */
+.post-content button.pub-link {
+    background: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+html.dialog-open {
+    overflow: hidden;
+}
+.pub-dialog {
+    width: min(680px, calc(100vw - 32px));
+    max-height: calc(100vh - 64px);
+    padding: 0;
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--accent);
+    border-radius: 12px;
+    background: var(--entry);
+    color: var(--content);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+.pub-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.55);
+}
+.dialog-head {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px 14px;
+    background: var(--entry);
+    border-bottom: 1px solid var(--border);
+}
+.dialog-kind {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+}
+.dialog-title {
+    margin: 4px 0 0;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--primary);
+}
+.dialog-close {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--secondary);
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.dialog-close:hover {
+    color: var(--primary);
+    background: var(--tertiary);
+}
+.dialog-body {
+    padding: 16px 20px 20px;
+    font-size: 15px;
+    line-height: 1.65;
+}
+.dialog-body p {
+    margin: 0;
+}
+.cite-block {
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: var(--code-bg);
+}
+.cite-block + .cite-block {
+    margin-top: 12px;
+}
+.cite-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--secondary);
+}
+.cite-copy {
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    border: none;
+    border-radius: 999px;
+    padding: 4px 12px;
+    cursor: pointer;
+    text-transform: none;
+    letter-spacing: 0;
+}
+.cite-copy:hover {
+    filter: brightness(1.1);
+}
+.pub-dialog pre.cite-text {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: var(--content);
+}
+.post-content .pub-link:focus-visible,
+.dialog-close:focus-visible,
+.cite-copy:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}

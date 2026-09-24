@@ -1,0 +1,118 @@
+# Publications shown on /publications/ (rendered by layouts/shortcodes/publications.html).
+# Add new entries at the top of their section.
+#
+# Section fields:
+#   section  - heading shown on the page
+#   type     - citation type for every item: article | conference | thesis
+#
+# Item fields:
+#   authors  - "A. Surname, B. C. Surname, and D. Surname"; the site owner's name
+#              (params.pubAuthorName) is highlighted
+#   title    - title of the work (sentence case)
+#   venue    - journal name, conference ("Name, City, Country") or institution
+#   year     - year; leave empty when not yet published
+#   yearLabel - optional text for the year column instead of `year` (e.g. 2024–)
+#   month    - full month name, e.g. September
+#   format   - conferences: Paper presentation (default), Poster presentation, Symposium...
+#   volume, issue, pages - journal articles
+#   thesis   - phd | master (theses only)
+#   status   - optional badge such as "Under review" or "In progress"
+#   links    - optional list of {label, url}; typical labels: DOI, PDF, Conference, Repository
+#   abstract - optional; adds an "Abstract" button that expands the text
+#
+# The "Cite" button (APA 7 and BibTeX) is generated from these fields.
+
+- section: Journal Articles
+  type: article
+  items:
+    - authors: G. Berberoğlu, S. Topuz, E. Kınay Çiçek, and K. B. Demirus
+      title: How do students' ratings of instruction change from the online pandemic period to face-to-face education? A case study in Turkey
+      venue: Journal of Psychoeducational Assessment
+      status: Under review
+
+    - authors: F. Çok, C. H. Güçlü, H. K. Özdoğan, and S. Topuz
+      title: "Adaptation of helicopter parenting and autonomy supportive behaviors to Turkish: Validity and reliability study"
+      venue: Ankara University Journal of Faculty of Educational Sciences (JFES)
+      year: 2022
+      month: August
+      volume: 55
+      issue: 2
+      pages: 339–360
+      links:
+        - label: DOI
+          url: https://doi.org/10.30964/auebfd.886761
+      abstract: >-
+        The aim of this study is to adapt the Helicopter Parenting and Autonomy Supportive Behaviour Scale developed by Schiffrin, Liss, Miles-McLean, Geary, Erchull, and Tashner to Turkish and to examine its validity and reliability. The original form of the scale consists of 15 items and two dimensions: Helicopter Parenting and Autonomy Supportive Behaviours. After communicating with the original authors the translation process the 6-point likert form was administered to 381 (78%) females, 107 (22%) males total of 488 university students. Confirmatory factor analysis was conducted to obtain evidence for the validity of the scale. The scale was found to fit well with the two dimensional structure as in the original form (χ2 = 223.02, df = 87, χ2/df = 2.56, p < .001, RMSEA = .060, SRMR = .070, CFI = .97, NNFI = .96, NFI = .95, GFI = .98). To establish reliability, Cronbach Alpha internal consistency coefficient has been calculated. The Cronbach Alpha coefficient was α = .80 for the helicopter parenting dimension and α = .80 for the autonomy supportive behaviours dimension. Correlations were found to vary between .31-.64. In all items, a significant difference was found between the means of the upper-lower 27% groups. The results yield that, Helicopter Parenting and Autonomy Supportive Behaviour Scale consisting of 15 items is a valid and reliable instrument to examine helicopter parenting and autonomy supportive behaviours of parents from the perspective of university students in Turkey.
+
+- section: Conference Proceedings
+  type: conference
+  items:
+    - authors: S. Topuz
+      title: Semantic–empirical mismatches in social and emotional skills
+      venue: "ITC 2026, Auckland, New Zealand"
+      year: 2026
+      month: July
+      links:
+        - label: Conference
+          url: https://conference.intestcom.org/
+
+    - authors: E. Kınay Çiçek, S. Topuz, G. Berberoğlu, and K. B. Demirus
+      title: Investigation of measurement invariance and differential item function by course and instructor characteristics in student evaluations of instruction in higher education
+      venue: "CMEEP, Eskişehir, Türkiye"
+      year: 2024
+      month: September
+      links:
+        - label: Conference
+          url: https://kongre.epodder.org/2024/en/
+
+    - authors: S. Topuz, G. Berberoğlu, E. Kınay Çiçek, and K. B. Demirus
+      title: Can computer adaptive version of students' ratings of instruction provide valid results?
+      venue: "IACAT, Seoul, South Korea"
+      year: 2024
+      month: September
+      links:
+        - label: Conference
+          url: https://iacat2024.com/home
+
+    - authors: S. Topuz, S. Gökçe, and G. Berberoğlu
+      title: Comparison of the PISA reading skills test across language and country groups
+      venue: "CMEEP, Eskişehir, Türkiye"
+      year: 2024
+      month: September
+      links:
+        - label: Conference
+          url: https://kongre.epodder.org/2024/en/
+
+    - authors: S. Topuz, G. Berberoğlu, E. Kınay Çiçek, and K. B. Demirus
+      title: Can the course and instructor evaluation form be applied as an computer adaptive test?
+      venue: "İstanbul, Türkiye"
+      year: 2023
+      month: September
+      links:
+        - label: PDF
+          url: https://sempozyum.adaptivetest.net/wp-content/uploads/2023/08/butas-2023-ozet.pdf
+
+    - authors: S. Topuz
+      title: Investigation of measurement invariance of Survey on Social and Emotional Skills by language family
+      venue: "CMEEP, İzmir, Türkiye"
+      year: 2022
+      month: September
+
+- section: Theses
+  type: thesis
+  items:
+    - authors: S. Topuz
+      title: Investigating of validity evidence with artificial intelligence
+      venue: Hacettepe University
+      thesis: phd
+      yearLabel: 2024–
+      status: In progress
+
+    - authors: S. Topuz
+      title: Comparison of analysis results obtained from WEKA and Orange data mining software in educational data mining
+      venue: Hacettepe University
+      year: 2021
+      thesis: master
+      links:
+        - label: Repository
+          url: https://openaccess.hacettepe.edu.tr/xmlui/handle/11655/25275

@@ -21,6 +21,11 @@ enableRobotsTXT = true
     name = "Publications"
     url = "/publications/"
     weight = 20
+  [[menu.main]]
+    identifier = "tools"
+    name = "Tools"
+    url = "/tools/"
+    weight = 30
 
 [params]
     description = "Semih Topuz — PhD candidate in Educational Measurement and Evaluation, researching AI, psychometrics, and data-driven assessment."

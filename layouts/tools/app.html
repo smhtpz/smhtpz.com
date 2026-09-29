@@ -1,0 +1,58 @@
+{{- define "main" }}
+{{- /* Full-width page that embeds an external app (front matter `app`); the app shows its own description.
+     The site's light/dark theme is passed to the app: as ?theme= when the frame loads, and by
+     postMessage({type: "theme", value}) whenever the visitor switches the theme. Apps that do not
+     listen simply ignore both. */}}
+<div class="app-shell">
+  <div class="app-bar">
+    <a class="app-back" href="{{ "tools/" | relLangURL }}">&larr; Tools</a>
+    <h1 class="app-title">{{ .Title }}</h1>
+    <a class="app-newtab" id="app-newtab" href="{{ .Params.app }}" target="_blank" rel="noopener">Open in a new tab &#8599;</a>
+  </div>
+  <div class="app-frame-wrap">
+    <div class="app-loading" id="app-loading" role="status">
+      <span class="app-spinner" aria-hidden="true"></span>
+      <p>Starting the app&hellip; This can take up to 30 seconds on first load.</p>
+    </div>
+    {{- /* src is set by the script below so the first request already carries the theme */}}
+    <iframe class="app-frame" id="app-frame" data-app="{{ .Params.app }}" title="{{ .Title }}"
+      allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <noscript><iframe class="app-frame" src="{{ .Params.app }}" title="{{ .Title }}"></iframe></noscript>
+  </div>
+</div>
+<script>
+  (function () {
+    var frame = document.getElementById("app-frame");
+    var loading = document.getElementById("app-loading");
+    var newTab = document.getElementById("app-newtab");
+    var app = new URL(frame.dataset.app);
+
+    function theme() {
+      return document.body.classList.contains("dark") ? "dark" : "light";
+    }
+    function withTheme() {
+      var u = new URL(app);
+      u.searchParams.set("theme", theme());
+      return u.href;
+    }
+    function sendTheme() {
+      if (frame.contentWindow) {
+        frame.contentWindow.postMessage({ type: "theme", value: theme() }, app.origin);
+      }
+    }
+
+    frame.addEventListener("load", function () {
+      loading.hidden = true;
+      sendTheme();
+    });
+    frame.src = withTheme();
+    newTab.href = withTheme();
+
+    // The theme toggle only changes the class on <body>; follow it.
+    new MutationObserver(function () {
+      newTab.href = withTheme();
+      sendTheme();
+    }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  })();
+</script>
+{{- end }}{{/* end main */ -}}

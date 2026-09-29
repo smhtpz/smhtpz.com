@@ -1,0 +1,25 @@
+{{- define "main" }}
+{{- /* Tools overview: intro text from content/tools/_index.md, one card per entry in data/tools.yaml */}}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+</header>
+<div class="post-content tools-intro">{{ .Content }}</div>
+<div class="tool-list">
+  {{- range site.Data.tools }}
+  <article class="tool-card">
+    <h2 class="tool-name">{{ .name }}</h2>
+    {{- with .tags }}
+    <ul class="tool-tags">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+    {{- end }}
+    <p class="tool-summary">{{ .summary }}</p>
+    {{- with .credits }}<p class="tool-credits">{{ . }}</p>{{ end }}
+    <div class="tool-actions">
+      <a class="tool-button tool-launch" href="{{ .page | relURL }}">Launch app</a>
+      {{- with .source }}
+      <a class="tool-button tool-secondary" href="{{ . }}" target="_blank" rel="noopener">Source code</a>
+      {{- end }}
+    </div>
+  </article>
+  {{- end }}
+</div>
+{{- end }}{{/* end main */ -}}

@@ -1,0 +1,13 @@
+# Tools listed on /tools/ (rendered by layouts/tools/list.html).
+# page    - the page on this site that embeds the app (content/tools/<slug>.md)
+# app     - the app's own URL (also used by the embed page and "open in a new tab")
+- name: Shiny-DIFT
+  page: /tools/dift/
+  app: https://smhtpz.shinyapps.io/Shiny_DIFT/
+  source: https://github.com/smhtpz/Shiny_DIFT
+  tags: [DIF, DSF, IRT trees, R/Shiny]
+  summary: >-
+    Detects differential item functioning (DIF) and differential step functioning (DSF)
+    in polytomous items with Rasch and rating scale trees. Upload your own data or try the
+    built-in example, compare PCM and RSM fits, and export plots, tables and an HTML report.
+  credits: Developed with Aybüke Doğaç and Sinem Tekin.

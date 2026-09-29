@@ -1,0 +1,25 @@
+{{- define "main" }}
+{{- /* Full-width page that embeds an external app (front matter `app`); the app shows its own description. */}}
+<div class="app-shell">
+  <div class="app-bar">
+    <a class="app-back" href="{{ "tools/" | relLangURL }}">&larr; Tools</a>
+    <h1 class="app-title">{{ .Title }}</h1>
+    <a class="app-newtab" href="{{ .Params.app }}" target="_blank" rel="noopener">Open in a new tab &#8599;</a>
+  </div>
+  <div class="app-frame-wrap">
+    <div class="app-loading" id="app-loading" role="status">
+      <span class="app-spinner" aria-hidden="true"></span>
+      <p>Starting the app&hellip; This can take up to 30 seconds on first load.</p>
+    </div>
+    <iframe class="app-frame" id="app-frame" src="{{ .Params.app }}" title="{{ .Title }}"
+      allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</div>
+<script>
+  (function () {
+    var frame = document.getElementById("app-frame");
+    var loading = document.getElementById("app-loading");
+    frame.addEventListener("load", function () { loading.hidden = true; });
+  })();
+</script>
+{{- end }}{{/* end main */ -}}
